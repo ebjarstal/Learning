@@ -4,7 +4,7 @@
 #include <vector>
 
 class Point3D {
-public:
+  public:
     Point3D(double x = 0, double y = 0, double z = 0);
 
     std::vector<double> getCoordinates() const { return {x_, y_, z_}; }
@@ -12,9 +12,10 @@ public:
     double getY() const { return y_; }
     double getZ() const { return z_; }
 
-    double distance(const Point3D& p) const;
-private:
+    double distance(const Point3D &p) const;
+
+  private:
     double x_, y_, z_;
 };
 
-std::ostream& operator<<(std::ostream& s, const Point3D& p);
+std::ostream &operator<<(std::ostream &s, const Point3D &p);

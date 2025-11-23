@@ -5,6 +5,6 @@
 
 namespace Rasterization {
 
-bool pointInTriangle(const Point3D& p, const Triangle& t);
+bool pointInTriangle(const Point3D &p, const Triangle &t);
 
-}  // namespace Rasterization
+} // namespace Rasterization

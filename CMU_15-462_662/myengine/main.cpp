@@ -1,11 +1,11 @@
 #include <iostream>
 
 #include "point3d.hpp"
-#include "vector3d.hpp"
 #include "polygons.hpp"
 #include "rasterization.hpp"
+#include "vector3d.hpp"
 
-int main(int, char* []) {
+int main(int, char *[]) {
     auto p0 = Point3D(1.5, 0.5);
     auto p1 = Point3D(9.7, 2.4);
     auto p2 = Point3D(6.6, 9.25);
