@@ -1,4 +1,4 @@
-# Lecture05
+# Lecture05: Spatial Transformations
 
 ## Types of transformations
 
@@ -127,3 +127,91 @@ Which means: $R^{T} = R^{-1 }$
 
 ## Reflections
 
+Question: does every matrix $Q$ such that $Q^{T}Q = I$ describe a rotation ?
+
+Let's look at
+$Q =
+\begin{bmatrix}
+-1 & 0\\
+0 & 1
+\end{bmatrix}
+$
+
+We got
+$Q^{T}Q =
+\begin{bmatrix}
+(-1)^2 & 0\\
+0 & 1
+\end{bmatrix} =
+I
+$
+
+So does it represent a rotation ? Well no, it only flips the x-axis, so it represents a reflection across the y-axis and therefore fails to preserve orientation (therefore not a rotation)
+
+## Orthogonal Transformations
+
+Transformations that preserve distances and the origin are called orthogonal transformations. And they are represented by matrices such that $Q^{T}Q = I$
+
+- Rotations additionally preserve orientation: $det(Q) > 0$
+- Reflections reverse orientation: $det(Q) < 0$
+
+## Scaling
+
+Scaling preserves the direction of all vectors. And it is a linear transformation.
+
+### Matrix representation
+
+How do we scale a vector $\vec{u} = (u_1, u_2, u_3)$ by $a$ ?
+
+Well the result should be $\vec{u'_a} = (a u_1, a u_2, a u_3)$, so pretty easy to deduce that the equation is
+$\begin{bmatrix}
+a & 0 & 0\\
+0 & a & 0\\
+0 & 0 & a\\
+\end{bmatrix} \begin{bmatrix}
+u_1\\
+u_2\\
+u_3
+\end{bmatrix} = \begin{bmatrix}
+a u_1\\
+a u_2\\
+a u_3
+\end{bmatrix}
+$
+
+### Negative scaling
+
+We can think of negative as a sequence of reflections. For instance in 2D:
+$\begin{bmatrix}
+-1 & 0\\
+0 & -1
+\end{bmatrix} =
+\begin{bmatrix}
+-1 & 0\\
+0 & 1
+\end{bmatrix} \begin{bmatrix}
+1 & 0\\
+0 & -1
+\end{bmatrix}
+$
+
+Since each reflection reverses orientation, so orientation is preserved. So basically negative scaling is rotation in 2D. But not in 3D since it is a sequence of 3 reflections!
+
+### Nonuniform scaling
+
+If each axis is scaled by a different amount then it's called nonuniform scaling. The matrix representation is pretty straightforward:
+
+$\begin{bmatrix}
+a & 0 & 0\\
+0 & b & 0\\
+0 & 0 & c\\
+\end{bmatrix} \begin{bmatrix}
+u_1\\
+u_2\\
+u_3
+\end{bmatrix} = \begin{bmatrix}
+a u_1\\
+b u_2\\
+c u_3
+\end{bmatrix}
+$
