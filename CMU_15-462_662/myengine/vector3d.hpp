@@ -1,5 +1,6 @@
 #pragma once
 
+#include <bits/chrono.h>
 #include <iostream>
 #include <vector>
 
@@ -45,3 +46,7 @@ private:
 
 std::ostream& operator<<(std::ostream& s, const Vector3D& v);
 bool operator==(const Vector3D& v1, const Vector3D& v2);
+Vector3D operator+(const Vector3D& v1, const Vector3D& v2);
+Vector3D operator-(const Vector3D& v1, const Vector3D& v2);
+Vector3D operator*(const double k, const Vector3D& v);
+Vector3D operator/(const Vector3D& v, const double k);

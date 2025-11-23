@@ -1,5 +1,6 @@
 #include "vector3d.hpp"
 
+#include <cassert>
 #include <iostream>
 #include "cmath"
 
@@ -28,8 +29,7 @@ double Vector3D::norm() const {
 Vector3D Vector3D::unit() const {
     if (this->isNull())
         return Vector3D();
-    auto n = this->norm();
-    return Vector3D(x_ / n, y_ / n, z_ / n);
+    return (*this / this->magnitude());
 }
 
 bool Vector3D::isCodirectionalWith(const Vector3D& v) const {
@@ -65,6 +65,23 @@ std::ostream& operator<<(std::ostream& s, const Vector3D& v) {
 
 bool operator==(const Vector3D& v1, const Vector3D& v2) {
     return (v1.getX() == v2.getX() && v1.getY() == v2.getY() && v1.getZ() == v2.getZ());
+}
+
+Vector3D operator+(const Vector3D& v1, const Vector3D& v2) {
+    return Vector3D(v1.getX() + v2.getX(), v1.getY() + v2.getY(), v1.getZ() + v2.getZ());
+}
+
+Vector3D operator-(const Vector3D& v1, const Vector3D& v2) {
+    return Vector3D(v1.getX() - v2.getX(), v1.getY() - v2.getY(), v1.getZ() - v2.getZ());
+}
+
+Vector3D operator*(const double k, const Vector3D& v) {
+    return Vector3D(k * v.getX(), k * v.getY(), k * v.getZ());
+}
+
+Vector3D operator/(const Vector3D& v, const double k) {
+    assert(k);
+    return Vector3D(v.getX() / k, v.getY() / k, v.getZ() / k);
 }
 
 // End operator overloads
