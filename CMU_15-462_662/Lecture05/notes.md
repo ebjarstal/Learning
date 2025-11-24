@@ -215,3 +215,86 @@ b u_2\\
 c u_3
 \end{bmatrix}
 $
+
+The overall transformation is represented by a symmetric matrix $A = R^{T}DR$. (Reminder that for rotations, $R^{T} = R^{-1}$)
+
+### Do all symmetric matrices represent nonuniform scaling ?
+
+Yes, the **Spectral theorem** says a symmetric matrix $A = A^{T}$ has orthonormal eigenvectors and real eigenvalues. Equivalently, $AR = RD$ where $R = [e_1, ..., e_n]$ and $D$ is a diagonal matrix with the eigenvalues.
+
+We can also write $A = RDR^{T}$
+
+Therefore every symmetric matrix performs a nonuniform scaling along some set of orthogonal axes. And if $A$ is **definite positive** ($\lambda_{i} > 0$) then this scaling is positive.
+
+## Shear
+
+A shear displaces each point $x$ in a direction $\vec{u}$ according to its distance along a fixed vector $\vec{v}$ :
+
+$f_{\vec{u},\vec{v}}(\vec{x}) = \vec{x} + \langle \vec{v}, \vec{x} \rangle \vec{u}$
+
+Is this a linear transformation ? Yes.
+
+### Matrix representation
+
+$A_{\vec{u}, \vec{v}} = I + u v^{T}$
+
+## Composite transformations
+
+From these 4 transformations (rotation, reflection, scaling and shear) we can build complex transformations via matrix multiplication.
+
+### But how do we decompose a complex transformation into pieces ?
+
+- There is no unique way to decompose a given linear transformation.
+
+But there are many useful decompositions :
+
+- singular value decomposition
+- LU factorization
+- polar decomposition
+- ...
+
+### Polar decomposition
+
+Decompose any matrix $A$ into an orthogonal matrix $Q$ and a symmetric positive-semidefinite matrix $P$.
+
+For instance :
+
+$A =
+\begin{bmatrix}
+0.34 & -0.11 & -0.89\\
+-0.65 & 0.52 & -0.70\\
+0.25 & 0.23 & -0.69
+\end{bmatrix}
+$
+
+$A = QP$
+
+$Q$ is for reflection/rotation, $P$ is for nonnegative, nonuniform scaling. Since $P$ is symmetric we can take it further using the spectral decomposition :
+
+$P = VDV^{T}$
+
+So $A = QVDV^{T} = UDV^{T}$ where $U$ is for rotation, $D$ for axis-aligned scaling, $V$ for rotation.
+
+Why is that useful for graphics ?
+
+## Interpolating transformations
+
+I got a model with two transformations $A_0$ and $A_1$, how do I interpolate the continuous motion ?
+
+### Linear interpolation
+
+We can write $A(t) = (1-t)A_0 + tA_1$ where $t \in [0, 1]$
+
+It works, but it looks awful.
+
+Using our polar decomposition we define $Q(t)$ and $P(t)$ and we get :
+
+$A(t) = Q(t) P(t)$
+
+Looks better now.
+
+## Translations
+
+Not a linear transformation. It's an affine transformation. So it gets a bit difficult to mix translations + linear transformations.
+
+But we can use a 4D shear to make 3D translations linear!
